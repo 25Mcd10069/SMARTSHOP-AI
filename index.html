@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ShopVerse</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ============ HEADER (visible after login) ============ -->
+  <header id="header" class="hidden">
+    <div class="logo" data-page="home"><span class="logo-mark">S</span> <span class="brand-name">ShopVerse</span></div>
+    <input type="search" id="headerSearch" placeholder="Search for products, brands and more...">
+    <nav>
+      <button data-page="home">Home</button>
+      <button data-page="products">Products</button>
+      <button data-page="cart">🛒 Cart <span id="cartCount" class="badge">0</span></button>
+      <button id="logoutBtn">Logout</button>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ============ 1. LOGIN ============ -->
+    <section id="page-login" class="page active">
+      <div class="auth-wrap">
+        <div class="auth-side">
+          <div id="loginCollage" class="collage"></div>
+          <div class="auth-overlay">
+            <div class="logo big"><span class="logo-mark">S</span> <span class="brand-name">ShopVerse</span></div>
+            <p class="tagline">Everything you love. From ₹99.</p>
+            <ul>
+              <li>✔ 130+ products in 6 categories</li>
+              <li>✔ Free delivery above ₹999</li>
+              <li>✔ Extra 10% off with code SMART10</li>
+            </ul>
+          </div>
+        </div>
+        <div class="auth-card">
+          <h2 id="authTitle">Login</h2>
+          <p class="hint" style="margin:-8px 0 6px">Welcome back! Please login to continue.</p>
+          <p id="authMsg" class="msg"></p>
+          <label for="username">Username</label>
+          <input type="text" id="username" placeholder="Enter any username">
+          <label for="password">Password</label>
+          <input type="password" id="password" placeholder="Enter any password">
+          <button id="authBtn" class="btn primary full">Login</button>
+          <p class="switch"><span id="switchText">New here?</span> <a href="#" id="switchLink">Create Account</a></p>
+          <p class="hint">Demo mode: any username and password will work.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 2. HOME / DASHBOARD (filled by JavaScript) ============ -->
+    <section id="page-home" class="page"></section>
+
+    <!-- ============ 3. PRODUCTS ============ -->
+    <section id="page-products" class="page">
+      <div class="page-head">
+        <h2 id="productsTitle">All Products</h2>
+        <select id="sortSelect" aria-label="Sort products">
+          <option value="low">Price: Low to High</option>
+          <option value="high">Price: High to Low</option>
+          <option value="rating">Top Rated</option>
+        </select>
+      </div>
+      <div id="chips" class="chips"></div>
+      <div id="subChips" class="chips sub"></div>
+      <p id="resultCount" class="hint"></p>
+      <div id="productGrid" class="grid"></div>
+      <div id="moreWrap" class="more"></div>
+      <div id="noResults" class="empty hidden">No products found. Try another search or category.</div>
+    </section>
+
+    <!-- ============ 4. CART ============ -->
+    <section id="page-cart" class="page">
+      <h2>Your Cart</h2>
+      <div id="cartWrap"></div>
+    </section>
+
+    <!-- ============ 5. CHECKOUT ============ -->
+    <section id="page-checkout" class="page">
+      <h2>Checkout</h2>
+      <div class="checkout-wrap">
+        <div class="form-card">
+          <p id="checkoutMsg" class="msg"></p>
+          <label for="custName">Customer name</label>
+          <input type="text" id="custName" placeholder="Full name">
+          <label for="custMobile">Mobile number</label>
+          <input type="tel" id="custMobile" placeholder="10-digit mobile number" maxlength="10">
+          <label for="custAddress">Delivery address</label>
+          <textarea id="custAddress" rows="3" placeholder="House no., street, area"></textarea>
+          <div class="two-col">
+            <div><label for="custCity">City</label><input type="text" id="custCity" placeholder="City"></div>
+            <div><label for="custPin">PIN code</label><input type="text" id="custPin" placeholder="6-digit PIN" maxlength="6"></div>
+          </div>
+          <label>Payment option</label>
+          <div class="pay-option"><input type="radio" checked disabled> Cash on Delivery</div>
+          <button id="placeOrderBtn" class="btn primary full">Place Order</button>
+        </div>
+        <div class="form-card">
+          <h3>Order summary</h3>
+          <div id="checkoutSummary"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 6. ORDER CONFIRMATION ============ -->
+    <section id="page-confirm" class="page">
+      <div class="confirm-card">
+        <div class="tick">✓</div>
+        <h2>Order Placed Successfully!</h2>
+        <p>Your Order ID: <strong id="orderId"></strong></p>
+        <div id="orderItems"></div>
+        <p class="hint">Pay in cash when your order arrives.</p>
+        <button id="continueBtn" class="btn primary">Continue Shopping</button>
+      </div>
+    </section>
+
+  </main>
+
+  <div id="toast" class="toast"></div>
+  <script src="script.js"></script>
+</body>
+</html>
